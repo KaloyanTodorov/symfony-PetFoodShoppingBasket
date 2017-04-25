@@ -1,0 +1,13 @@
+{% for msg in app.session.flashBag.get('info') %}
+    <h2 style="color: blue">{{ msg }}</h2>
+{% endfor %}
+
+{% for review in product.reviews %}
+    <b>{{ review.comment }}</b> | Rating: {{ review.rating }}<br/>
+{% endfor %}
+
+{{ render(controller(
+    'PetFoodShoppingBasketBundle:Review:leaveReviewForm', {'id': product.id}
+)) }}
+
+<a href="{{ path('all_products') }}">Back to product list</a>

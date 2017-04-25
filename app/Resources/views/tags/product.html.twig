@@ -1,0 +1,3 @@
+{% for tag in product.tags %}
+    <u><a href="{{ path('tag_view', {'id': tag.id}) }}"> {{ tag.name }}</a></u><br/>
+{% endfor %}
