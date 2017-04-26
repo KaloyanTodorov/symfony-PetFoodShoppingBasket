@@ -69,6 +69,25 @@ class ProductController extends Controller
     }
 
     /**
+     * @Route("/products/view/{id}", name="view_product_form")
+     * @Method("GET")
+     * @param Product $product
+     * @return Response
+     */
+    public function viewProductAction(Product $product)
+    {
+        $form = $this->createForm(
+            ProductType::class,
+            $product
+        );
+
+        return $this->render("products/view_product.html.twig",
+            [
+                'productForm' => $form->createView()
+            ]);
+    }
+
+    /**
      * @Route("/product/edit/{id}", name="edit_product_form")
      * @Method("GET")
      * @param Product $product
@@ -77,7 +96,6 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-
         $form = $this->createForm(
             ProductType::class,
             $product
@@ -99,6 +117,10 @@ class ProductController extends Controller
      */
     public function editProcess(Product $product, Request $request)
     {
+        if($product->getUser()->getId() != $this->getUser()->getId() && !$this->isGranted('ROLE_ADMIN', $this->getUser() )) {
+            $this->get('session')->getFlashBag()->add('error', 'Only owners or admins can edit their projects.');
+            return $this->redirectToRoute('all_products');
+        }
 
         $form = $this->createForm(
             ProductType::class,

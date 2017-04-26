@@ -1,15 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
     <div class="form-group col-md-4 col-md-offset-4">
         <h3 style="color: coral">Edit Product:</h3>
         {{ form_start(productForm) }}
         {{ form_widget(productForm) }}
-        <input type="submit" class="btn-warning btn btn-1" value="Edit product">
         {{ form_end(productForm) }}
 
         <a href="{{ path('homepage') }}" class="btn-default btn btn-1" >Home</a>
         <a href="{{ path('all_products') }}" class="btn-info btn btn-1" >Cancel</a>
     </div>
 {% endblock %}
+

@@ -5,11 +5,10 @@
         <h3>Add Product:</h3>
         {{ form_start(productForm) }}
         {{ form_widget(productForm) }}
-
-
+        <input type="submit"  class="btn-primary btn btn-1" value="Add product">
         {{ form_end(productForm) }}
 
-        <button type="submit" class="btn-primary btn btn-1">Add product</button><br>
-        <a href="{{ path('all_products') }}" class="btn-success btn btn-1" >Back</a>
+        <a href="{{ path('homepage') }}" class="btn-default btn btn-1" >Home</a>
+        <a href="{{ path('all_products') }}" class="btn-info btn btn-1" >Cancel</a>
     </div>
 {% endblock %}

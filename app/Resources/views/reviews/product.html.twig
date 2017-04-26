@@ -1,3 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
 {% for msg in app.session.flashBag.get('info') %}
     <h2 style="color: blue">{{ msg }}</h2>
 {% endfor %}
@@ -6,8 +9,10 @@
     <b>{{ review.comment }}</b> | Rating: {{ review.rating }}<br/>
 {% endfor %}
 
-{{ render(controller(
-    'PetFoodShoppingBasketBundle:Review:leaveReviewForm', {'id': product.id}
-)) }}
-
-<a href="{{ path('all_products') }}">Back to product list</a>
+    <div class="col-md-4">
+        {#{{ render(controller(#}
+            {#'PetFoodShoppingBasketBundle:Review:leaveReviewForm', {'id': product.id}, {'submit': 'test'}#}
+        {#)) }}#}
+        <a href="{{ path('all_products') }}" class="btn-info btn btn-1" >Back to products</a>
+    </div>
+{% endblock %}

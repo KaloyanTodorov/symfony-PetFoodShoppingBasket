@@ -3,9 +3,13 @@
 {% block body %}
     <div class="col-md-4 col-md-offset-4">
     {{ form_start(form) }}
-    {{ form_widget(form) }}
-        <a href=" {{ path('user_login') }}" class="btn-default btn btn-md">Login</a><br/>
+        {{ form_errors(form) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.password_raw) }}
+        {{ form_widget(form.submit, { 'label' : 'Register' }) }}
     {{ form_end(form) }}
+
+        <a href=" {{ path('user_login') }}" class="btn-default btn btn-md">Login</a><br/>
     </div>
 
 {% endblock %}

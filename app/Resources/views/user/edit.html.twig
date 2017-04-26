@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="col-md-4">
+    <h3 style="color: coral">Edit your profile:</h3>
+    {{ form_start(userProfileForm) }}
+
+    {{ form_row(userProfileForm.username) }}
+    {{ form_row(userProfileForm.password_raw) }}
+    {{ form_row(userProfileForm.initialCash) }}
+
+    {{ form_widget(userProfileForm.submit, { 'label': 'Edit'}) }}
+
+
+    <a href="{{ path('show_user_profile') }}" class="btn-default btn">Cancel</a>
+    {{ form_end(userProfileForm) }}
+
+</div>
+{% endblock %}
+

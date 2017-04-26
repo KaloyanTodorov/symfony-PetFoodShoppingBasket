@@ -72,6 +72,12 @@ class Product
      */
     private $category;
 
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="PetFoodShoppingBasketBundle\Entity\User", inversedBy="products")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->createdOn = new \DateTime();

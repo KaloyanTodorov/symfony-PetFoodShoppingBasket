@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h2> Hello, {{ app.user.username }}</h2>
+
+        <div class="col-md-4">
+            Currently you have {{ app.user.initialCash }} lv.<br/>
+            <a href="{{ path('homepage') }}" class="btn-default btn btn-sm">Home</a>
+            <a href="{{ path('edit_user_profile_form', {'id': app.user.id}) }}" class="btn-primary btn btn-sm">Edit profile</a>
+
+        </div>
+    </div>
+{% endblock %}

@@ -16,13 +16,13 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Category</th>
+                {#<th>Reviews</th>#}
+                {#<th>View Tags</th>#}
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')   %}
-                <th>Edit</th>
-                <th>Delete</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 {% endif %}
-                <th>Reviews</th>
-                <th>Add Tag</th>
-                <th>View Tags</th>
             </tr>
             </thead>
             <tbody>
@@ -31,6 +31,7 @@
                 <td>{{ index + 1 }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
+                <td>{{ product.category }}</td>
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')   %}
                 <td>
                     <a href=" {{ path('edit_product_form', {'id': product.id}) }}" class="btn-warning btn btn-sm">Edit </a>
@@ -43,18 +44,24 @@
                 </td>
                 {% endif %}
 
-                <td>
-                    <a href="{{ path('product_reviews', {'id': product.id}) }}"  class="col-md-offset-1">
-                        View all reviews
-                    </a>
-                </td>
-                <td><a href="{{ path('add_tag_form', {'id': product.id}) }}">add tag</a> </td>
-                <td><a href="{{ path('tags_by_product', {'id': product.id}) }}">view tags</a> </td>
+                {#<td>#}
+                    {#<a href="{{ path('product_reviews', {'id': product.id}) }}"  class="col-md-offset-1">#}
+                        {#View all reviews#}
+                    {#</a>#}
+                {#</td>#}
+                {#<td><a href="{{ path('add_tag_form', {'id': product.id}) }}">add tag</a> </td>#}
+                {#<td><a href="{{ path('tags_by_product', {'id': product.id}) }}">view tags</a> </td>#}
             </tr>
             {% endfor %}
             </tbody>
         </table>
+
+        <a href=" {{ path('homepage') }}" class="btn-default btn btn-sm col-md-1">Home</a>
+        <a href=" {{ path('add_product_form') }}" class="btn-primary btn btn-sm col-md-1">Add product</a>
+
     </div>
-    <a href=" {{ path('add_product_form') }}" class="btn-primary btn btn-sm col-md-1 col-md-offset-1">Add product</a>
+    {#<a href=" {{ path('add_product_form') }}" class="btn-primary btn btn-sm col-md-1 col-md-offset-1">Add product</a><br>#}
+    {#<a href=" {{ path('homepage') }}" class="btn-primary btn btn-sm col-md-1 col-md-offset-1">Home</a>#}
+
 
 {% endblock %}

@@ -60,18 +60,28 @@ class User implements UserInterface
      */
     private $roles;
 
-
     /**
      * @var
      * @ORM\Column(name="role", type="string", length=255, )
      */
     private $role;
 
+    /**
+     * @var
+     * @ORM\Column(name="initial_cash", type="decimal", scale=2)
+     */
+    private $initialCash;
     public function __construct()
     {
         $this->roles = new ArrayCollection();
+        $this->initialCash = 100;
     }
 
+    /**
+     * @var Product[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="PetFoodShoppingBasketBundle\Entity\Product", mappedBy="user")
+     */
+    private $products;
 
     /**
      * Get id
@@ -233,5 +243,40 @@ class User implements UserInterface
     {
         $this->role = $role;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getInitialCash()
+    {
+        return $this->initialCash;
+    }
+
+    /**
+     * @param mixed $initialCash
+     */
+    public function setInitialCash($initialCash)
+    {
+        $this->initialCash = $initialCash;
+    }
+
+    /**
+     * @return ArrayCollection|Product[]
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param ArrayCollection|Product[] $products
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+    }
+
+
+
 }
 
