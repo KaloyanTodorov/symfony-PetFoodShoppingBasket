@@ -17,7 +17,13 @@ class ReviewType extends AbstractType
         $builder
             ->add('comment', TextareaType::class)
             ->add('rating', ChoiceType::class, [
-                'choices' => [1,2,3,4,5]
+                'choices' => [
+                    '1' => 1,
+                    '2' => 2,
+                    '3' => 3,
+                    '4' => 4,
+                    '5' => 5
+                ]
             ]);
 
     }

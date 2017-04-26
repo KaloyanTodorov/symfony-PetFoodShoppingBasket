@@ -21,10 +21,11 @@ security:
 
         main:
             anonymous: ~
-            provider: our_db_provider
+            pattern: ^/
             form_login:
-                login_path: our_login
-                check_path: our_login
+                provider: our_db_provider
+                login_path: user_login
+                check_path: user_login
             logout:
                 path: /logout
                 target: /login
@@ -35,3 +36,9 @@ security:
 
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             #form_login: ~
+
+    access_control:
+        - { path: ^/register , roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login , roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/project/manage, roles: [ ROLE_ADMIN ] }
+        - { path: ^/, roles: [ ROLE_USER, ROLE_ADMIN, ROLE_EDITOR ] }

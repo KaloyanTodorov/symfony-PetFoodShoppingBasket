@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="col-md-4 col-md-offset-4">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+        <a href=" {{ path('user_login') }}" class="btn-default btn btn-md">Login</a><br/>
+    {{ form_end(form) }}
+    </div>
+
+{% endblock %}

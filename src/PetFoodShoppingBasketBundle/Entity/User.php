@@ -5,6 +5,7 @@ namespace PetFoodShoppingBasketBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -14,6 +15,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    const ROLE_USER = 'ROLE_USER';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+    const ROLE_EDITOR = 'ROLE_EDITOR';
+
     /**
      * @var int
      *
@@ -27,6 +32,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
     private $username;
 
@@ -34,8 +40,14 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
+     *
      */
     private $password;
+
+    /**
+     * @Assert\Length(min="4")
+     */
+    private $password_raw;
 
     /**
      * @var Role[]|ArrayCollection
@@ -47,6 +59,13 @@ class User implements UserInterface
      * )
      */
     private $roles;
+
+
+    /**
+     * @var
+     * @ORM\Column(name="role", type="string", length=255, )
+     */
+    private $role;
 
     public function __construct()
     {
@@ -139,9 +158,7 @@ class User implements UserInterface
 //
 //        return $rolesStrings;
 
-        return array_map(function (Role $r) {
-            return $r->getName();
-        }, $this->roles->toArray());
+        return explode(',', $this->getRole());
     }
 
     /**
@@ -170,6 +187,51 @@ class User implements UserInterface
     public function addRole(Role $role)
     {
         $this->roles->add($role);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPasswordRaw()
+    {
+        return $this->password_raw;
+    }
+
+    /**
+     * @param mixed $password_raw
+     */
+    public function setPasswordRaw($password_raw)
+    {
+        $this->password_raw = $password_raw;
+    }
+
+    public function getDefaultRole()
+    {
+        return self::ROLE_USER;
+    }
+
+    /**
+     * @param array $roles
+     */
+    public function setRoles($roles)
+    {
+        $this->setRole(implode(',', $roles));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param mixed $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 }
 

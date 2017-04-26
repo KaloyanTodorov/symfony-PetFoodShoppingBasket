@@ -5,17 +5,34 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link rel="text/css" href="/web/css/bootstrap-grid.min.css" />
-        <link rel="text/css" href="/web/css/bootstrap-reboot.min.css" />
-        <link rel="text/css" href="/web/css/bootstrap.min.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     </head>
+
     <body>
+        {% if app.session.flashBag.has('success') %}
+            <ul style="color: forestgreen">
+                {% for message in app.session.flashBag.get('success')  %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if app.session.flashBag.has('error') %}
+            <ul style="color: darkred">
+                {% for message in app.session.flashBag.get('error')  %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <div class="container">
         {% block body %}{% endblock %}
+        </div>
+
         {% block javascripts %}{% endblock %}
+
     </body>
 
-    <footer>
-        <link rel="script/javascript" href="/web/js/bootstrap.min.js">
-    </footer>
+    <footer></footer>
 </html>
