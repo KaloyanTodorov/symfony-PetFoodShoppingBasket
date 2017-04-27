@@ -3,6 +3,7 @@
 namespace PetFoodShoppingBasketBundle\Controller;
 
 use PetFoodShoppingBasketBundle\Entity\Product;
+use PetFoodShoppingBasketBundle\Entity\User;
 use PetFoodShoppingBasketBundle\Form\ProductType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -43,6 +44,8 @@ class ProductController extends Controller
     /**
      * @Route("/products/add", name="add_product_process")
      * @Method("POST")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function addProcess(Request $request)
     {
@@ -51,7 +54,11 @@ class ProductController extends Controller
             ProductType::class,
             $product
         );
+
+        $product->setUser($this->getUser());
+
         $form->handleRequest($request);
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
@@ -64,17 +71,17 @@ class ProductController extends Controller
 
         return $this->render("products/add.html.twig",
             [
-                'productForm' => $form->createView()
+                'productForm' => $form->createView(),
             ]);
     }
 
     /**
-     * @Route("/products/view/{id}", name="view_product_form")
+     * @Route("/product/view/{id}", name="view_product_form")
      * @Method("GET")
      * @param Product $product
      * @return Response
      */
-    public function viewProductAction(Product $product)
+    public function viewProduct(Product $product)
     {
         $form = $this->createForm(
             ProductType::class,
@@ -83,7 +90,15 @@ class ProductController extends Controller
 
         return $this->render("products/view_product.html.twig",
             [
-                'productForm' => $form->createView()
+                'product' => [
+                    'id' => $product->getId(),
+                    'name' => $product->getName(),
+                    'description' => $product->getDescription(),
+                    'price' => $product->getPrice(),
+                    'created_on' => $product->getCreatedOn()->format('Y:m:d H:i'),
+                    'category' => $product->getCategory(),
+                    'user' => $product->getUser()->getId(),
+                ]
             ]);
     }
 

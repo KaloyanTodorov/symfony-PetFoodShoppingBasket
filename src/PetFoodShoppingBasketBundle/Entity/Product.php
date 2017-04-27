@@ -4,6 +4,7 @@ namespace PetFoodShoppingBasketBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 /**
  * Product
@@ -46,7 +47,7 @@ class Product
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_on", type="datetimetz", nullable=false, options={"default" = "CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="created_on", type="datetime", nullable=false, options={"default" = "CURRENT_TIMESTAMP"})
      */
     private $createdOn;
 
@@ -68,7 +69,8 @@ class Product
     private $tags;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PetFoodShoppingBasketBundle\Entity\Category")
+     * @var Category
+     * @ORM\ManyToOne(targetEntity="PetFoodShoppingBasketBundle\Entity\Category", inversedBy="products")
      */
     private $category;
 
@@ -77,6 +79,18 @@ class Product
      * @ORM\ManyToOne(targetEntity="PetFoodShoppingBasketBundle\Entity\User", inversedBy="products")
      */
     private $user;
+
+    /**
+     * @var
+     * @ORM\Column(name="quantity", type="integer", length=5)
+     */
+    private $quantity;
+
+    /**
+     * @var
+     * @ORM\Column(name="is_on_promotion", type="boolean")
+     */
+    private $isOnPromotion;
 
     public function __construct()
     {
@@ -229,6 +243,54 @@ class Product
     public function setCategory($category)
     {
         $this->category = $category;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * @param mixed $quantity
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsOnPromotion()
+    {
+        return $this->isOnPromotion;
+    }
+
+    /**
+     * @param mixed $isOnPromotion
+     */
+    public function setIsOnPromotion($isOnPromotion)
+    {
+        $this->isOnPromotion = $isOnPromotion;
     }
 
 

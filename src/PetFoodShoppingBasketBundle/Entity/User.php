@@ -71,17 +71,18 @@ class User implements UserInterface
      * @ORM\Column(name="initial_cash", type="decimal", scale=2)
      */
     private $initialCash;
-    public function __construct()
-    {
-        $this->roles = new ArrayCollection();
-        $this->initialCash = 100;
-    }
 
     /**
      * @var Product[]|ArrayCollection
      * @ORM\OneToMany(targetEntity="PetFoodShoppingBasketBundle\Entity\Product", mappedBy="user")
      */
     private $products;
+
+
+    public function __construct()
+    {
+        $this->roles = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -275,8 +276,6 @@ class User implements UserInterface
     {
         $this->products = $products;
     }
-
-
 
 }
 

@@ -17,6 +17,8 @@
                 <th>Name</th>
                 <th>Price</th>
                 <th>Category</th>
+                <th>Promotion</th>
+                <th>Date created</th>
                 {#<th>Reviews</th>#}
                 {#<th>View Tags</th>#}
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')   %}
@@ -32,6 +34,10 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.category }}</td>
+                <td>{% if product.isOnPromotion %}
+                        ON!
+                    {% endif %}</td>
+                <td>{{ product.createdOn|date("m/d/Y") }}</td>
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')   %}
                 <td>
                     <a href=" {{ path('edit_product_form', {'id': product.id}) }}" class="btn-warning btn btn-sm">Edit </a>
@@ -57,8 +63,9 @@
         </table>
 
         <a href=" {{ path('homepage') }}" class="btn-default btn btn-sm col-md-1">Home</a>
-        <a href=" {{ path('add_product_form') }}" class="btn-primary btn btn-sm col-md-1">Add product</a>
-
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR') %}
+            <a href=" {{ path('add_product_form') }}" class="btn-primary btn btn-sm col-md-1">Add product</a>
+        {% endif %}
     </div>
     {#<a href=" {{ path('add_product_form') }}" class="btn-primary btn btn-sm col-md-1 col-md-offset-1">Add product</a><br>#}
     {#<a href=" {{ path('homepage') }}" class="btn-primary btn btn-sm col-md-1 col-md-offset-1">Home</a>#}

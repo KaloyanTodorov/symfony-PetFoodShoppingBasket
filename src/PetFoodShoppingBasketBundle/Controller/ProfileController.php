@@ -35,7 +35,6 @@ class ProfileController extends Controller
      */
     public function editUserFormAction(User $user, $id)
     {
-
         $id = $user->getId();
 
         $form = $this->createForm(
