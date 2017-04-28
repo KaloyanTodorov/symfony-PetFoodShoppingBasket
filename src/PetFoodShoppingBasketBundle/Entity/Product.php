@@ -81,6 +81,12 @@ class Product
     private $user;
 
     /**
+     * @var Stock
+     * @ORM\OneToOne(targetEntity="PetFoodShoppingBasketBundle\Entity\Stock", mappedBy="product")
+     */
+    private $stock;
+
+    /**
      * @var
      * @ORM\Column(name="quantity", type="integer", length=5)
      */

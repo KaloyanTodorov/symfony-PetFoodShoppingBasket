@@ -1,0 +1,5 @@
+# src/PetFoodShoppingBasketBundle/Resources/config/services.yml
+services:
+    price_calculator:
+        class: PetFoodShoppingBasketBundle\Service\PriceCalculator
+        arguments: ['@doctrine.orm.entity_manager']

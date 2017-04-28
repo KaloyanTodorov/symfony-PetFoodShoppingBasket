@@ -3,7 +3,17 @@
 parameters:
     #parameter_name: value
 
+# src/PetFoodShoppingBasketBundle/Resources/config/services.yml
 services:
-    #service_name:
-    #    class: PetFoodShoppingBasketBundle\Directory\ClassName
-    #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+    repo.promotions:
+        class: Doctrine\ORM\EntityRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+          - \PetFoodShoppingBasketBundle\Entity\Promotion
+    promotion_manager:
+        class: PetFoodShoppingBasketBundle\Service\PromotionManager
+        arguments: ['@repo.promotions']
+    price_calculator:
+        class: PetFoodShoppingBasketBundle\Service\PriceCalculator
+        arguments: ['@promotion_manager']
+

@@ -10,6 +10,7 @@
     <h1 style="color: darkred;">{{ msg }}</h1>
 {% endfor %}
     <div class="table-responsive">
+        <p>All products </p>
         <table class="table">
             <thead>
             <tr>
@@ -33,7 +34,10 @@
                 <td>{{ index + 1 }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
-                <td>{{ product.category }}</td>
+                <td>
+                    <a href="{{ path('category_show', {'id': product.category.id}) }}">
+                        {{ product.category }}</td>
+                    </a>
                 <td>{% if product.isOnPromotion %}
                         ON!
                     {% endif %}</td>
@@ -66,6 +70,7 @@
         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR') %}
             <a href=" {{ path('add_product_form') }}" class="btn-primary btn btn-sm col-md-1">Add product</a>
         {% endif %}
+
     </div>
     {#<a href=" {{ path('add_product_form') }}" class="btn-primary btn btn-sm col-md-1 col-md-offset-1">Add product</a><br>#}
     {#<a href=" {{ path('homepage') }}" class="btn-primary btn btn-sm col-md-1 col-md-offset-1">Home</a>#}

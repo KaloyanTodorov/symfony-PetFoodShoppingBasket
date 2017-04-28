@@ -3,10 +3,12 @@
 namespace PetFoodShoppingBasketBundle\Controller;
 
 use PetFoodShoppingBasketBundle\Entity\Product;
+use PetFoodShoppingBasketBundle\Entity\Promotion;
 use PetFoodShoppingBasketBundle\Entity\User;
 use PetFoodShoppingBasketBundle\Form\ProductType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,18 +16,29 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
+    const NUM_RESULT = 10;
+
     /**
      * @Route("/products", name="all_products")
+     * @Template()
+     * @param Request $request
+     * @return array
      */
-    public function viewAll()
+    public function viewAll(Request $request)
     {
-        $products = $this->getDoctrine()
-            ->getRepository(Product::class)
-            ->findBy([], ['price' => 'ASC']);
-        return $this->render('products/view_all.html.twig',
-            [
-                'products' => $products
-            ]);
+
+        $paginator = $this->get('knp_paginator');
+        $query = $this->getDoctrine()->getRepository(Product::class)
+            ->createQueryBuilder('p')
+            ->select('p');
+
+        $pagination = $paginator->paginate(
+            $query->getQuery(),
+            $request->query->getInt('page', 1),
+            self::NUM_RESULT
+        );
+
+        return compact('pagination');
     }
 
     /**
@@ -172,5 +185,34 @@ class ProductController extends Controller
         $this->addFlash("delete", "Product deleted!");
 
         return $this->redirectToRoute("all_products");
+    }
+
+    /**
+     * @Route("/products", name="all_products")
+     * @Template()
+     * @param Request $request
+     * @return array
+     */
+    public function producsKnpAction(Request $request)
+    {
+        $paginator = $this->get('knp_paginator');
+        $query = $this->getDoctrine()->getRepository(Product::class)
+            ->createQueryBuilder('p')
+            ->select('p');
+
+        $pagination = $paginator->paginate(
+            $query->getQuery(),
+            $request->query->getInt('page', 1),
+            self::NUM_RESULT
+        );
+
+        $calc = $this->get('price_calculator');
+
+        $max_promotion = $this->get('promotion_manager')
+                        ->getGeneralPromotion();
+
+        return compact('pagination', 'max_promotion', 'calc');
+
+        // in template use {{ calc.calculate(product.price) | number_format(2) }}
     }
 }

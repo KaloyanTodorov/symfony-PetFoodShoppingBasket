@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for msg in app.session.flashBag.get('info') %}
+        <h1 style="color: forestgreen;">{{ msg }}</h1>
+    {% endfor %}
+
+    {% for msg in app.session.flashBag.get('delete') %}
+        <h1 style="color: darkred;">{{ msg }}</h1>
+    {% endfor %}
+    <div class="table-responsive">
+        <p>All products {{ pagination.totalItemCount }}</p>
+        <form action="" method="POST">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Add to cart</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Name', 'p.name') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Price', 'p.price') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Promotion', 'p.isOnPromotion') }}</th>
+                    <th>Category</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Date created', 'p.createdOn') }}</th>
+                    {#<th>Reviews</th>#}
+                    {#<th>View Tags</th>#}
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')   %}
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for index, product in pagination %}
+                    <tr>
+                        <td>{{ index + 1 }}</td>
+                        <td><input type="checkbox" value="{{ product.id }}" name="products[]"> </td>
+                        <td>{{ product.name }}</td>
+                        <td>
+                            {%  set product_promotion = calc.calculate(product) %}
+                            {% if product_promotion != product.price %}
+                                <del>{{ product.price | number_format(2) }}</del><br />
+                            {% endif %}
+                            {{ product_promotion | number_format(2) }}
+                        </td>
+                        <td>{% if product_promotion != product.price %}
+                                ON!
+                            {% endif %}</td>
+                        <td>
+                            <a href="{{ path('category_show', {'id': product.category.id}) }}">
+                                {{ product.category }}
+                            </a>
+                        </td>
+                        <td>{{ product.createdOn|date("m/d/Y") }}</td>
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')   %}
+                            <td>
+                                <a href=" {{ path('edit_product_form', {'id': product.id}) }}" class="btn-warning btn btn-sm">Edit </a>
+                            </td>
+
+                            <td>
+                                <form method="POST" action="{{ path('delete_product_process', {'id': product.id}) }}">
+                                    <button type="submit" class="btn-danger btn btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        {% endif %}
+
+                        {#<td>#}
+                        {#<a href="{{ path('product_reviews', {'id': product.id}) }}"  class="col-md-offset-1">#}
+                        {#View all reviews#}
+                        {#</a>#}
+                        {#</td>#}
+                        {#<td><a href="{{ path('add_tag_form', {'id': product.id}) }}">add tag</a> </td>#}
+                        {#<td><a href="{{ path('tags_by_product', {'id': product.id}) }}">view tags</a> </td>#}
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <td colspan="6">
+                            <button type="submit" class="btn-success btn">Add to cart</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+
+        <a href=" {{ path('homepage') }}" class="btn-default btn btn-sm col-md-1">Home</a>
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR') %}
+            <a href=" {{ path('add_product_form') }}" class="btn-primary btn btn-sm col-md-1">Add product</a>
+        {% endif %}
+        <br/>
+        <div>
+                {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+    {#<a href=" {{ path('add_product_form') }}" class="btn-primary btn btn-sm col-md-1 col-md-offset-1">Add product</a><br>#}
+    {#<a href=" {{ path('homepage') }}" class="btn-primary btn btn-sm col-md-1 col-md-offset-1">Home</a>#}
+
+
+{% endblock %}

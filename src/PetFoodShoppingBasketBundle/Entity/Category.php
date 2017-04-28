@@ -35,6 +35,11 @@ class Category
      */
     private $products;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PetFoodShoppingBasketBundle\Entity\Promotion", mappedBy="category")
+     */
+    private $promotion;
+
     function __construct()
     {
         $this->products = new ArrayCollection();
@@ -95,5 +100,23 @@ class Category
     {
         $this->products = $products;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPromotion()
+    {
+        return $this->promotion;
+    }
+
+    /**
+     * @param mixed $promotion
+     */
+    public function setPromotion($promotion)
+    {
+        $this->promotion = $promotion;
+    }
+
+
 }
 
