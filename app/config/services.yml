@@ -16,4 +16,7 @@ services:
     price_calculator:
         class: PetFoodShoppingBasketBundle\Service\PriceCalculator
         arguments: ['@promotion_manager']
+    cart_calculator:
+        class: PetFoodShoppingBasketBundle\Service\CartCalculator
+        arguments: ['@doctrine.orm.entity_manager', getRepository]
 

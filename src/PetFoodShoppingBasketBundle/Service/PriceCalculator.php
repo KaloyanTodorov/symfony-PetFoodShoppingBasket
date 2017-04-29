@@ -24,7 +24,6 @@ class PriceCalculator
     public function calculate($product)
     {
         $category = $product->getCategory();
-        $category_id = $category->getId();
 
         $promotion = $this->manager->getGeneralPromotion();
 

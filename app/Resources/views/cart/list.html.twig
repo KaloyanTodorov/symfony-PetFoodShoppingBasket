@@ -1,6 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
- Prodcuts addded
+ <div class="form-group col-md-12 col-md-offset-4">
+  <h3 style="color: coral">View Cart:</h3>
+     {{ dump(produc) }}
+     {% for product in app %}
+      <div>
+       <label for="product_name">Product name:</label>
+          {{ product.name }}
+      </div>
+      <div>
+       <label for="product_price">Price:</label>
+          {{ product.price }}
+      </div>
+     {% endfor %}
+  <a href="{{ path('homepage') }}" class="btn-default btn btn-1" >Home</a>
+  <a href="{{ path('all_products') }}" class="btn-info btn btn-1" >Back to products</a>
+ </div>
 {% endblock %}
 

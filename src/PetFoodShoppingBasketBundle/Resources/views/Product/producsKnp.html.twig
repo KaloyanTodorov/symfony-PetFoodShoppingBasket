@@ -29,40 +29,43 @@
                 </thead>
                 <tbody>
                 {% for index, product in pagination %}
-                    <tr>
-                        <td>{{ index + 1 }}</td>
-                        <td>
-                            <h3>{{ product.name }}</h3>
-                            Add to cart: <input type="number" value="{{ product.id }}" name="products[]">
-                        </td>
-                        <td>
-                            {%  set product_promotion = calc.calculate(product) %}
-                            {% if product_promotion != product.price %}
-                                <del>{{ product.price | number_format(2) }}</del><br />
-                            {% endif %}
-                            {{ product_promotion | number_format(2) }}
-                        </td>
-                        <td>{% if product_promotion != product.price %}
-                                ON!
-                            {% endif %}</td>
-                        <td>
-                            <a href="{{ path('category_show', {'id': product.category.id}) }}">
-                                {{ product.category }}
-                            </a>
-                        </td>
-                        <td>{{ product.createdOn|date("m/d/Y") }}</td>
-                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')   %}
+                    {% if product.quantity > 0 %}
+                        <tr>
+                            <td>{{ index + 1 }}</td>
                             <td>
-                                <a href=" {{ path('edit_product_form', {'id': product.id}) }}" class="btn-warning btn btn-sm">Edit </a>
+                                <h3>{{ product.name }}</h3>
+                                Add to cart: <input type="checkbox" name="products[]" value="{{ product.id }}">
                             </td>
+                            <td>
+                                {%  set product_promotion = calc.calculate(product) %}
+                                {% if product_promotion != product.price %}
+                                    <del>{{ product.price | number_format(2) }}</del><br />
+                                {% endif %}
+                                {{ product_promotion | number_format(2) }}
+                            </td>
+                            <td>{% if product_promotion != product.price %}
+                                    ON!
+                                {% endif %}</td>
+                            <td>
+                                <a href="{{ path('category_show', {'id': product.category.id}) }}">
+                                    {{ product.category }}
+                                </a>
+                            </td>
+                            <td>{{ product.createdOn|date("m/d/Y") }}</td>
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')   %}
+                                <td>
+                                    <a href=" {{ path('edit_product_form', {'id': product.id}) }}" class="btn-warning btn btn-sm">Edit </a>
+                                </td>
 
-                            <td>
-                                <form method="POST" action="{{ path('delete_product_process', {'id': product.id}) }}">
-                                    <button type="submit" class="btn-danger btn btn-sm">Delete</button>
-                                </form>
-                            </td>
-                        {% endif %}
-                    </tr>
+                                <td>
+                                    <form method="POST" action="{{ path('delete_product_process', {'id': product.id}) }}">
+                                        <button type="submit" class="btn-danger btn btn-sm">Delete</button>
+                                    </form>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endif %}
+
                 {% endfor %}
                     <tr>
                         <td colspan="6">

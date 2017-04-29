@@ -10,7 +10,7 @@ namespace PetFoodShoppingBasketBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findByPublishedAndCategory($published,$category)
+    public function findByPublishedAndCategory($published, $category)
     {
         $qb  = $this->createQueryBuilder('p');
         $qb->select('p')

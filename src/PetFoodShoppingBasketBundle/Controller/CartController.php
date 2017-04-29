@@ -5,22 +5,18 @@ namespace PetFoodShoppingBasketBundle\Controller;
 use PetFoodShoppingBasketBundle\Entity\Cart;
 use PetFoodShoppingBasketBundle\Entity\CartProduct;
 use PetFoodShoppingBasketBundle\Entity\Product;
+use PetFoodShoppingBasketBundle\Form\CartType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class CartController extends Controller
 {
-
-
     /**
      * @Route("/cart/add", name="cart_add")
      */
     public function addAction(Request $request)
     {
-
         $manager = $this->getDoctrine()->getManager();
         $session = $this->get('session');
 
@@ -31,6 +27,7 @@ class CartController extends Controller
             $cart->setUser($this->getUser()->getId());
             $cart->setDateCreated(new \DateTime());
             $cart->setDateUpdated(new \DateTime());
+            $cart->setTotalPricePerCart(0.0);
             $manager->persist($cart);
             $manager->flush();
 
@@ -47,7 +44,6 @@ class CartController extends Controller
             $product = $this->getDoctrine()->getRepository(Product::class)->find($id_product);
 
             if($product){
-
                 $cp = $this->getDoctrine()->getRepository(CartProduct::class)->findOneBy([
                     'cart' => $cart,
                     'product'=> $product
@@ -57,30 +53,90 @@ class CartController extends Controller
                     $cp= new CartProduct();
                     $cp->setCart($cart);
                     $cp->setProduct($product);
-                    $cp->setQuantity();
+                    $cp->setQuantity(1);
+                    $cp->setProductPrice($product->getPrice());
                 } else {
                     $cp->setQuantity($cp->getQuantity() + 1);
+                    $cp->setProductPrice($cp->getQuantity() * $product->getPrice());
                 }
 
                 $manager->persist($cp);
+
             }
+
+            dump($product);
         }
+
 
         $cart->setDateUpdated(new \DateTime());
 
         $manager->persist($cart);
         $manager->flush();
 
-
-        return $this->redirectToRoute('cart_list');
+        return $this->redirectToRoute('cart_show', [
+            'cart' => $cart->getId()
+        ]);
     }
 
 
     /**
-     * @Route("/cart/list", name="cart_list")
+     * @Route("/cart/show/{cart}", name="cart_show")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction()
+    public function indexAction(Cart $cart)
     {
-        return $this->render('cart/list.html.twig');
+        $user = $this->getUser($cart->getUser());
+        $productsCart = $this->fillCart($cart);
+        $sumCart = $this->cartSum($cart);
+
+        return $this->render('cart/show.html.twig', [
+            'productsCart' => $productsCart,
+            'user' => $user,
+            'totalPrice' => $sumCart,
+            ]);
+    }
+
+
+    public function fillCart(Cart $cart)
+    {
+        $repo = $this->getDoctrine()->getRepository(CartProduct::class)->findAll();
+        $productsCart = [];
+
+        foreach ($repo as $product) {
+            if($cart->getId() == $product->getCart()->getId()) {
+                $productsCart[$product->getProduct()->getId()] = $product;
+            }
+        }
+
+        return $productsCart;
+    }
+
+    /**
+     * @param Cart $cart
+     * @Route("/cart/sum/{cart}")
+     */
+    public function cartSum(Cart $cart)
+    {
+        $productsCart = $this->fillCart($cart);
+        /** @var Product $product */
+        $sum = 0.0;
+        foreach ($productsCart as $product) {
+            $countPerProduct = $product->getQuantity();
+            $productId = $product->getProduct()->getid();
+            $productPrice = $product->getProduct()->getPrice();
+
+            $sum += $productPrice * $countPerProduct;
+
+            dump($sum);
+        }
+        return $sum;
+    }
+
+    /**
+     * @Route("/cart/checkout/{cart}")
+     */
+    public function checkoutCart(Cart $cart)
+    {
+
     }
 }

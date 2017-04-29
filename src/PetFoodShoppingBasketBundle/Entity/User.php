@@ -283,5 +283,22 @@ class User implements UserInterface
         $this->products = $products;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCart()
+    {
+        return $this->cart;
+    }
+
+    /**
+     * @param mixed $cart
+     */
+    public function setCart($cart)
+    {
+        $this->cart = $cart;
+    }
+
+
 }
 

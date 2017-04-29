@@ -1,12 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h1>{{ user.username }} Cart</h1>
+    {% for product in productsCart %}
+        {{ dump(product) }}
+        ID: {{ product.product.id}} -> {{ product.product.name }} - {{ product.quantity }} of it<br>
+    {% endfor %}
+    You currently have &euro;{{ user.initialCash }}
+    Total price: &euro;{{ totalPrice }}<br/>
 
-We show the cart<br>
-    <a href="#">Manage cart</a>
-    <br>
-    <a href="{{ path('all_products') }}">List of products</a>
-    <br>
-    <a href="{{ path('show_user_profile') }}">Profile</a>
-    <br>
+    {% if totalPrice > user.initialCash %}
+        {%  set needed_amount = (totalPrice - user.initialCash) %}
+        <div>You cannot checkout the cart. You need &euro;{{ needed_amount }} more.</div>
+    {% endif %}
+    <a href="{{ path('homepage') }}" class="btn-default btn btn-1" >Back to home</a>
+    <a href="{{ path('all_products') }}" class="btn-default btn btn-1" >Back to products</a>
 {% endblock %}

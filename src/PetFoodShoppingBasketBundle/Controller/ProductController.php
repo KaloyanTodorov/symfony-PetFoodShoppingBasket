@@ -4,6 +4,7 @@ namespace PetFoodShoppingBasketBundle\Controller;
 
 use PetFoodShoppingBasketBundle\Entity\Product;
 use PetFoodShoppingBasketBundle\Entity\Promotion;
+use PetFoodShoppingBasketBundle\Entity\Stock;
 use PetFoodShoppingBasketBundle\Entity\User;
 use PetFoodShoppingBasketBundle\Form\ProductType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -71,7 +72,8 @@ class ProductController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isValid() && $form->isSubmitted()) {
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush();
