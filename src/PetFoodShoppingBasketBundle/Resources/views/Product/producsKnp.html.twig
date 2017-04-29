@@ -11,19 +11,16 @@
     {% endfor %}
     <div class="table-responsive">
         <p>All products {{ pagination.totalItemCount }}</p>
-        <form action="" method="POST">
+        <form action="{{ path('cart_add') }}" method="POST">
             <table class="table">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Add to cart</th>
                     <th>{{ knp_pagination_sortable(pagination, 'Name', 'p.name') }}</th>
                     <th>{{ knp_pagination_sortable(pagination, 'Price', 'p.price') }}</th>
                     <th>{{ knp_pagination_sortable(pagination, 'Promotion', 'p.isOnPromotion') }}</th>
                     <th>Category</th>
                     <th>{{ knp_pagination_sortable(pagination, 'Date created', 'p.createdOn') }}</th>
-                    {#<th>Reviews</th>#}
-                    {#<th>View Tags</th>#}
                     {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')   %}
                         <th>Edit</th>
                         <th>Delete</th>
@@ -34,8 +31,10 @@
                 {% for index, product in pagination %}
                     <tr>
                         <td>{{ index + 1 }}</td>
-                        <td><input type="checkbox" value="{{ product.id }}" name="products[]"> </td>
-                        <td>{{ product.name }}</td>
+                        <td>
+                            <h3>{{ product.name }}</h3>
+                            Add to cart: <input type="number" value="{{ product.id }}" name="products[]">
+                        </td>
                         <td>
                             {%  set product_promotion = calc.calculate(product) %}
                             {% if product_promotion != product.price %}
@@ -63,14 +62,6 @@
                                 </form>
                             </td>
                         {% endif %}
-
-                        {#<td>#}
-                        {#<a href="{{ path('product_reviews', {'id': product.id}) }}"  class="col-md-offset-1">#}
-                        {#View all reviews#}
-                        {#</a>#}
-                        {#</td>#}
-                        {#<td><a href="{{ path('add_tag_form', {'id': product.id}) }}">add tag</a> </td>#}
-                        {#<td><a href="{{ path('tags_by_product', {'id': product.id}) }}">view tags</a> </td>#}
                     </tr>
                 {% endfor %}
                     <tr>
@@ -91,8 +82,5 @@
                 {{ knp_pagination_render(pagination) }}
         </div>
     </div>
-    {#<a href=" {{ path('add_product_form') }}" class="btn-primary btn btn-sm col-md-1 col-md-offset-1">Add product</a><br>#}
-    {#<a href=" {{ path('homepage') }}" class="btn-primary btn btn-sm col-md-1 col-md-offset-1">Home</a>#}
-
 
 {% endblock %}

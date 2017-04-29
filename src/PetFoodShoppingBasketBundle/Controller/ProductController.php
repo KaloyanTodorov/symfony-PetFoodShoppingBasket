@@ -26,7 +26,6 @@ class ProductController extends Controller
      */
     public function viewAll(Request $request)
     {
-
         $paginator = $this->get('knp_paginator');
         $query = $this->getDoctrine()->getRepository(Product::class)
             ->createQueryBuilder('p')

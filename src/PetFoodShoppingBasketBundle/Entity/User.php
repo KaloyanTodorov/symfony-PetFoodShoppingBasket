@@ -78,6 +78,12 @@ class User implements UserInterface
      */
     private $products;
 
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="PetFoodShoppingBasketBundle\Entity\Cart", mappedBy="user")
+     */
+    private $cart;
+
 
     public function __construct()
     {

@@ -20,8 +20,6 @@
                 <th>Category</th>
                 <th>Promotion</th>
                 <th>Date created</th>
-                {#<th>Reviews</th>#}
-                {#<th>View Tags</th>#}
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')   %}
                     <th>Edit</th>
                     <th>Delete</th>
@@ -53,14 +51,6 @@
                     </form>
                 </td>
                 {% endif %}
-
-                {#<td>#}
-                    {#<a href="{{ path('product_reviews', {'id': product.id}) }}"  class="col-md-offset-1">#}
-                        {#View all reviews#}
-                    {#</a>#}
-                {#</td>#}
-                {#<td><a href="{{ path('add_tag_form', {'id': product.id}) }}">add tag</a> </td>#}
-                {#<td><a href="{{ path('tags_by_product', {'id': product.id}) }}">view tags</a> </td>#}
             </tr>
             {% endfor %}
             </tbody>

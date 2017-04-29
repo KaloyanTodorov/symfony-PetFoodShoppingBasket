@@ -38,7 +38,7 @@ class ShoppingCartController extends Controller
 
         dump($cart);
 
-        return $this->render('cart/add_product.view.html.twig', array(
+        return $this->render('add_product.view.html.twig', array(
             'cart' => $cart
         ));
 

@@ -1,5 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-pokazwame kolichkata
+
+We show the cart<br>
+    <a href="#">Manage cart</a>
+    <br>
+    <a href="{{ path('all_products') }}">List of products</a>
+    <br>
+    <a href="{{ path('show_user_profile') }}">Profile</a>
+    <br>
 {% endblock %}
