@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61bd1d06-a447-4d2e-aebc-0bc9cd67f5bc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Service/CartCalculator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Service/CartServiceInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Service/OrderService.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Service/OrderServiceInterface.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Controller/ShoppingCartController.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/cart/list.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/cart/list.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/cart/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/cart/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/home/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/home/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/user/profile.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/user/profile.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/services.yml" afterPath="$PROJECT_DIR$/app/config/services.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Controller/CartController.php" afterPath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Controller/CartController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Controller/ProductController.php" afterPath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Controller/ProductController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Entity/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Repository/ProductRepository.php" afterPath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Repository/ProductRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Resources/views/Product/producsKnp.html.twig" afterPath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Resources/views/Product/producsKnp.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Service/PriceCalculator.php" afterPath="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Service/PriceCalculator.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -89,12 +75,26 @@
       <file leaf-file-name="CartController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Controller/CartController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-262">
-              <caret line="99" column="28" lean-forward="false" selection-start-line="99" selection-start-column="28" selection-end-line="99" selection-end-column="28" />
+            <state relative-caret-position="640">
+              <caret line="159" column="0" lean-forward="false" selection-start-line="158" selection-start-column="8" selection-end-line="159" selection-end-column="0" />
               <folding>
                 <element signature="e#58#102#0#PHP" expanded="true" />
                 <element signature="e#2368#2379#0#PHP" expanded="true" />
                 <element signature="e#2787#2808#0#PHP" expanded="true" />
+                <element signature="e#4260#4279#1#PHP" expanded="true" />
+                <element signature="e#4959#4973#1#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/user/profile.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding>
+                <element signature="e#12#26#0#Twig" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,16 +145,6 @@
               <folding>
                 <element signature="e#142#182#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrderServiceInterface.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Service/OrderServiceInterface.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -242,7 +232,6 @@
         <option value="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Service/PriceCalculator.php" />
         <option value="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Controller/ProductController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/cart/index.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/user/profile.html.twig" />
         <option value="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Entity/User.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/cart/list.html.twig" />
         <option value="$PROJECT_DIR$/app/config/services.yml" />
@@ -256,6 +245,7 @@
         <option value="$PROJECT_DIR$/app/Resources/views/home/index.html.twig" />
         <option value="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Service/CartCalculator.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/cart/show.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/user/profile.html.twig" />
         <option value="$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Controller/CartController.php" />
       </list>
     </option>
@@ -655,7 +645,7 @@
       <workItem from="1492698571644" duration="36968000" />
       <workItem from="1493121396076" duration="776000" />
       <workItem from="1493125183336" duration="286000" />
-      <workItem from="1493197586722" duration="155323000" />
+      <workItem from="1493197586722" duration="159684000" />
     </task>
     <task id="LOCAL-00001" summary="Added bootstrap to main forms">
       <created>1493218240533</created>
@@ -692,11 +682,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493467367677</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Updated Add to cart">
+      <created>1493505674492</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1493505674492</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210302000" />
+    <option name="totallyTimeSpent" value="214663000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -743,7 +740,8 @@
     <MESSAGE value="List by Categories added, Added Cart Entity" />
     <MESSAGE value="Added promotions" />
     <MESSAGE value="Added add to cart" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added add to cart" />
+    <MESSAGE value="Updated Add to cart" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Add to cart" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -928,17 +926,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/user/profile.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="66" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="66" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-            <element signature="e#469#478#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1225,14 +1212,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/user/profile.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PetFoodShoppingBasketBundle/Controller/CartController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-262">
-          <caret line="99" column="28" lean-forward="false" selection-start-line="99" selection-start-column="28" selection-end-line="99" selection-end-column="28" />
+        <state relative-caret-position="640">
+          <caret line="159" column="0" lean-forward="false" selection-start-line="158" selection-start-column="8" selection-end-line="159" selection-end-column="0" />
           <folding>
             <element signature="e#58#102#0#PHP" expanded="true" />
             <element signature="e#2368#2379#0#PHP" expanded="true" />
             <element signature="e#2787#2808#0#PHP" expanded="true" />
+            <element signature="e#4260#4279#1#PHP" expanded="true" />
+            <element signature="e#4959#4973#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

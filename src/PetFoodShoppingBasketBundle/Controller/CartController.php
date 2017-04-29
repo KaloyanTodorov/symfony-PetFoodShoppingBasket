@@ -126,8 +126,6 @@ class CartController extends Controller
             $productPrice = $product->getProduct()->getPrice();
 
             $sum += $productPrice * $countPerProduct;
-
-            dump($sum);
         }
         return $sum;
     }
@@ -137,6 +135,32 @@ class CartController extends Controller
      */
     public function checkoutCart(Cart $cart)
     {
+        $products = $this->fillCart($cart);
+        $sumCart = $this->cartSum($cart);
+        $curentCash = $this->getUser()->getInitialCash();
+        if($curentCash < $sumCart) {
+            dump("nedostatychno paru");
+            return $this->redirectToRoute("show_user_profile");
+        }
+
+        foreach ($products as $currentProduct) {
+            $currBagQty = $currentProduct->getQuantity();
+            $currTotalQty = $currentProduct->getProduct()->getQuantity();
+            if($currTotalQty >= $currBagQty) {
+                $currentProduct->getProduct()->setQuantity(
+                    $currTotalQty - $currBagQty
+                );
+            } else {
+                dump("not enough of " . $currentProduct->getProduct()->getName());
+            }
+        }
+
+        $this->getUser()->setInitialCash($curentCash - $sumCart);
+        dump($this->getUser()->getInitialCash());
+
+        dump("success!");
+
+        return $this->redirectToRoute("all_products");
 
     }
 }
