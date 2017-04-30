@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="61bd1d06-a447-4d2e-aebc-0bc9cd67f5bc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/cart/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/cart/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/home/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/home/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/user/profile.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/user/profile.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -632,7 +629,7 @@
       <workItem from="1492698571644" duration="36968000" />
       <workItem from="1493121396076" duration="776000" />
       <workItem from="1493125183336" duration="286000" />
-      <workItem from="1493197586722" duration="167352000" />
+      <workItem from="1493197586722" duration="167388000" />
     </task>
     <task id="LOCAL-00001" summary="Added bootstrap to main forms">
       <created>1493218240533</created>
@@ -690,11 +687,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493542011042</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated logout">
+      <created>1493544333732</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1493544333732</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222331000" />
+    <option name="totallyTimeSpent" value="222367000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -744,7 +748,8 @@
     <MESSAGE value="Updated Add to cart" />
     <MESSAGE value="Added Checkout" />
     <MESSAGE value="Updated checkout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated checkout" />
+    <MESSAGE value="Updated logout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated logout" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
