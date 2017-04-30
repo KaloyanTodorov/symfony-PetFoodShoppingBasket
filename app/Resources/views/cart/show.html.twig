@@ -10,9 +10,11 @@
 
     {% if totalPrice > user.initialCash %}
         {%  set needed_amount = (totalPrice - user.initialCash) %}
-        <div>You cannot checkout the cart. You need &euro;{{ needed_amount }} more.</div>
+        <div class="alert alert-danger">You cannot checkout the cart. You need &euro;{{ needed_amount }} more.</div>
     {% endif %}
-    <a href="{{ path('petfoodshoppingbasket_cart_checkoutcart', {'cart': cart.id}) }}" class="btn-default btn btn-1" >Checkout</a>
+    {% if totalPrice <= user.initialCash %}
+        <a href="{{ path('petfoodshoppingbasket_cart_checkoutcart', {'cart': cart.id}) }}" class="btn-default btn btn-1" >Checkout</a>
+    {% endif %}
     <a href="{{ path('edit_user_profile_form', {'id': user.id}) }}" class="btn-default btn btn-1" >Add cash</a>
     <a href="{{ path('all_products') }}" class="btn-default btn btn-1" >Back to products</a>
 {% endblock %}
