@@ -19,8 +19,11 @@
                     <th>{{ knp_pagination_sortable(pagination, 'Name', 'p.name') }}</th>
                     <th>{{ knp_pagination_sortable(pagination, 'Price', 'p.price') }}</th>
                     <th>{{ knp_pagination_sortable(pagination, 'Promotion', 'p.isOnPromotion') }}</th>
+                    <td>{{ knp_pagination_sortable(pagination, 'Items remaining', 'p.quantity') }}</td>
                     <th>Category</th>
                     <th>{{ knp_pagination_sortable(pagination, 'Date created', 'p.createdOn') }}</th>
+                    <th>Reviews</th>
+                    <th>View Tags</th>
                     {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')   %}
                         <th>Edit</th>
                         <th>Delete</th>
@@ -45,13 +48,22 @@
                             </td>
                             <td>{% if product_promotion != product.price %}
                                     ON!
-                                {% endif %}</td>
+                                {% endif %}
+                            </td>
+                            <td>{{ product.quantity }}</td>
                             <td>
                                 <a href="{{ path('category_show', {'id': product.category.id}) }}">
                                     {{ product.category }}
                                 </a>
                             </td>
                             <td>{{ product.createdOn|date("m/d/Y") }}</td>
+                            <td>
+                                <a href="{{ path('product_reviews', {'id': product.id}) }}"  class="col-md-offset-1">
+                                    View all reviews
+                                </a>
+                            </td>
+                            <td><a href="{{ path('add_tag_form', {'id': product.id}) }}">add tag</a>
+                            <a href="{{ path('tags_by_product', {'id': product.id}) }}">view tags</a> </td>
                             {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')   %}
                                 <td>
                                     <a href=" {{ path('edit_product_form', {'id': product.id}) }}" class="btn-warning btn btn-sm">Edit </a>

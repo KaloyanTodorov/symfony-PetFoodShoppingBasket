@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="col-md-4">
+        <a href="{{ path('all_products') }}">List of products</a>
+        <br>
+        <a href="{{ path('add_product_form') }}">Add product</a>
+        <br>
+        <a href="{{ path('show_user_profile') }}">Profile</a>
+        <br>
+        {#<a href="{{ path('cart_show', {'cart': cart.id}) }}" class="btn-warning btn btn-sm">Show cart</a>#}
+    </div>
+{% endblock %}
+

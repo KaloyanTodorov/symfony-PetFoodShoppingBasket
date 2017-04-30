@@ -38,7 +38,6 @@ class CartController extends Controller
 
         $products = $request->get('products');
 
-
         foreach ($products as $id_product){
             /** @var Product $product */
             $product = $this->getDoctrine()->getRepository(Product::class)->find($id_product);
@@ -61,9 +60,7 @@ class CartController extends Controller
                 }
 
                 $manager->persist($cp);
-
             }
-
             dump($product);
         }
 
@@ -93,6 +90,7 @@ class CartController extends Controller
             'productsCart' => $productsCart,
             'user' => $user,
             'totalPrice' => $sumCart,
+            'cart' =>$cart,
             ]);
     }
 
@@ -151,14 +149,14 @@ class CartController extends Controller
                     $currTotalQty - $currBagQty
                 );
             } else {
-                dump("not enough of " . $currentProduct->getProduct()->getName());
+                dump("Not enough of " . $currentProduct->getProduct()->getName());
             }
         }
 
         $this->getUser()->setInitialCash($curentCash - $sumCart);
         dump($this->getUser()->getInitialCash());
 
-        dump("success!");
+        $this->get('session')->getFlashBag()->add('success', 'Checkout complete!');
 
         return $this->redirectToRoute("all_products");
 
